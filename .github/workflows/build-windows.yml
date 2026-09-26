@@ -28,12 +28,17 @@ jobs:
           if not exist build mkdir build
           if not exist release mkdir release
 
+      - name: Compile resources
+        shell: cmd
+        run: |
+          rc.exe /nologo ProtocolPlus_Auto_Clicker.rc
+
       - name: Compile Protocol+ Auto Clicker
         shell: cmd
         run: |
-          cl /nologo /O2 /EHsc /DUNICODE /D_UNICODE ^
+          cl.exe /nologo /O2 /EHsc /DUNICODE /D_UNICODE ^
           src\ProtocolPlus_Auto_Clicker.cpp ^
-          ProtocolPlus_Auto_Clicker.rc ^
+          ProtocolPlus_Auto_Clicker.res ^
           user32.lib gdi32.lib shell32.lib ^
           /link /SUBSYSTEM:WINDOWS ^
           /OUT:build\ProtocolPlus_Auto_Clicker.exe
